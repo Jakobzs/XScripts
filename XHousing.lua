@@ -1,8 +1,8 @@
 local XHousing = Class("XHousing")
 
 function XHousing:initialize()
+	-- The housing districts that exists
 	self.housing_districts = { "Mist", "Lavender Beds", "Goblet", "Shirogane", "Empyreum" }
-
 
 	-- Log Module
 	self.log    = LoadModule("XScripts", "/Utilities/Log")
@@ -58,7 +58,23 @@ function XHousing:ToggleStartBtn()
 		self.started = false
 	end
 
-	print("Our mission is: "..self.menu["MISSION_ID"])
+	print("Our housing district is: "..self.menu["HOUSING_DISTRICT_ID"].int)
+
+	if self.menu["APARTMENTS"].bool then
+		self:CheckApartments()
+	end
+
+	if self.menu["HOUSES"].bool then
+		self:CheckHouses()
+	end
+end
+
+function XHousing:CheckApartments()
+	print("Checking apartments");
+end
+
+function XHousing:CheckHouses()
+	print("Checking houses");
 end
 
 function XHousing:InitializeMenu()
@@ -67,10 +83,10 @@ function XHousing:InitializeMenu()
 
 	self.menu:label("XHousing Ver 1.0.0") self.menu:separator() self.menu:space()
 
-	self.menu:combobox("Housing District Selector", "MISSION_ID", self.housing_districts, 0)
+	self.menu:combobox("Housing District Selector", "HOUSING_DISTRICT_ID", self.housing_districts, 0)
 
-	self.menu:checkbox("Apartments", "EXPERT_DELIVERY", true) 
-	self.menu:checkbox("Houses", "AUTO_PICK", true)
+	self.menu:checkbox("Apartments", "APARTMENTS", true) 
+	self.menu:checkbox("Houses", "HOUSES", true)
 
 	self.menu:button("Start", "BTN_START", function() self:ToggleStartBtn() end)
 end
