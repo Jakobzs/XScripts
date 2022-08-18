@@ -66,6 +66,11 @@ end
 
 function XHousing:CheckApartments()
 	print("Checking apartments");
+
+	-- Loops through battle objects and prints name
+	for i, obj in ipairs(ObjectManager.All()) do
+		print("XObject name: ", obj.name)
+	end
 end
 
 function XHousing:CheckHouses()
