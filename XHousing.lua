@@ -71,6 +71,12 @@ function XHousing:CheckApartments()
 	for i, obj in ipairs(ObjectManager.All()) do
 		print("XObject name: ", obj.name)
 	end
+
+	local pathfinder = ObjectManager.EventNpcObject(function(obj) return obj.name == "Storm Private" end)
+	if pathfinder.valid then
+		player:rotateTo(pathfinder.pos)
+		TaskManager:Interact(pathfinder)
+	end	
 end
 
 function XHousing:CheckHouses()
