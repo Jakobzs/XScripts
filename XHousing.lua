@@ -69,13 +69,21 @@ function XHousing:CheckApartments()
 
 	-- Loops through battle objects and prints name
 	for i, obj in ipairs(ObjectManager.All()) do
-		print("XObject name: ", obj.name)
+		--print("XObject name: ", obj.name)
 	end
 
+	-- Get the NPC
 	local pathfinder = ObjectManager.EventNpcObject(function(obj) return obj.name == "Storm Private" end)
 	if pathfinder.valid then
+		-- Rotate and talk with them
 		player:rotateTo(pathfinder.pos)
 		TaskManager:Interact(pathfinder)
+
+		-- Skip the talking
+		local talkAddon = AddonManager.GetAddon("Talk")
+		if talkAddon ~= nil then
+			talkAddon:Continue()
+		end
 	end	
 end
 
