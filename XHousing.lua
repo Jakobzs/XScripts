@@ -41,11 +41,6 @@ end
 
 function XHousing:Draw()
 	
-	local maxDrawDistance = self.menu["DRAW_SETTINGS"]["MAX_DRAW_DISTANCE"].int
-
-	if self.menu["DRAW_SETTINGS"]["DRAW_WAYPOINTS"].bool then
-		self:DrawNodes(maxDrawDistance)
-	end	
 end
 
 function XHousing:ToggleStartBtn()
